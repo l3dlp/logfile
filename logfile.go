@@ -1,6 +1,7 @@
 package logfile
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -10,14 +11,15 @@ var (
 	logError error
 )
 
-func LogFile(logFilePath string) *os.File {
+// The function opens a log file, sets it as the output for the log package, and returns the file.
+func Use(logFilePath string) *os.File {
 	logFile, logError = os.OpenFile(
 		logFilePath,
 		os.O_RDWR|os.O_CREATE|os.O_APPEND,
 		0664,
 	)
 	if logError != nil {
-		fmt.Println("Erreur lors de l'ouverture du fichier de log:", err)
+		fmt.Println("Erreur lors de l'ouverture du fichier de log:", logError)
 		return nil
 	}
 
