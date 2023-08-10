@@ -17,7 +17,8 @@ func LogFile(logFilePath string) *os.File {
 		0664,
 	)
 	if logError != nil {
-		os.Exit(1)
+		fmt.Println("Erreur lors de l'ouverture du fichier de log:", err)
+		return nil
 	}
 
 	log.SetOutput(logFile)
